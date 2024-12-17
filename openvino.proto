@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package openvino;
+
+service OpenvinoService {
+    rpc Predict (stream ImageChunk) returns (PredictResponse);
+}
+
+message ImageChunk {
+    bytes chunk_data = 1;
+    bool is_last = 2;
+}
+
+message PredictResponse {
+    bool haserror = 1;
+    string errormessage = 2;
+    double duration = 3;
+    string citizenship_number = 4;
+}
